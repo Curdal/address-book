@@ -4,11 +4,11 @@ use Curdal\AddressBook\Models\Person;
 use Curdal\AddressBook\Models\Support\Address;
 use Curdal\AddressBook\Models\Support\Email;
 use Curdal\AddressBook\Models\Support\PhoneNumber;
-use Illuminate\Testing\Fluent\AssertableJson;
 
 use function Pest\Laravel\deleteJson;
 use function Pest\Laravel\getJson;
 use function Pest\Laravel\postJson;
+use function Pest\Laravel\putJson;
 
 it('can retrieve a list of people', function () {
     $number = fake()->randomDigitNotZero();
@@ -90,12 +90,23 @@ it('can find a person by ID with contact information', function () {
                 'emails',
                 'phone_numbers',
             ],
-        ]);
+        ])
+        ->assertJsonCount(1, 'data.addresses')
+        ->assertJsonCount(2, 'data.emails')
+        ->assertJsonCount(3, 'data.phone_numbers');
 });
 
 it('can update a person', function () {
-    //
-})->skip();
+    $person = Person::factory()->create();
+
+    putJson(route('address-book.people.update', ['person' => $person->id]), [
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+    ])->assertSuccessful()->assertSee([
+        'first_name' => 'John',
+        'last_name' => 'Doe'
+    ]);
+});
 
 it('can remove a person', function () {
     $person = Person::factory()->create();
@@ -107,7 +118,7 @@ it('can remove a person', function () {
     $this->assertDatabaseCount('address_book_people', 0);
 });
 
-it('can remove a person and their contact information', function () {
+it('can remove a person and all their contact information', function () {
     $person = Person::factory()
         ->has(Address::factory())
         ->has(Email::factory())

@@ -2,10 +2,11 @@
 
 namespace Curdal\AddressBook\Models;
 
+use Curdal\AddressBook\Database\Factories\GroupFactory;
 use Curdal\AddressBook\Models\Relations\GroupPerson;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Group extends Model
 {
@@ -15,9 +16,14 @@ class Group extends Model
 
     public $fillable = ['name', 'description'];
 
-    public function person(): HasMany
+    public function people(): BelongsToMany
     {
-        return $this->hasMany(Person::class)
+        return $this->belongsToMany(Person::class, (new GroupPerson)->getTable())
             ->using(GroupPerson::class);
+    }
+
+    protected static function newFactory()
+    {
+        return GroupFactory::new();
     }
 }

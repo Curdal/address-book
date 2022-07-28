@@ -6,7 +6,7 @@ use Curdal\AddressBook\Models\ContactInformation;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class AddressFactory extends Factory
+class ContactInformationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

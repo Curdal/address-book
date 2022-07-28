@@ -10,8 +10,6 @@ class GroupPerson extends Pivot
 {
     protected $table = 'address_book_group_person';
 
-    public $incrementing = true;
-
     public function person(): BelongsTo
     {
         return $this->belongsTo(Person::class, 'person_id');

@@ -2,12 +2,12 @@
 
 namespace Curdal\AddressBook\Models;
 
+use Curdal\AddressBook\Database\Factories\PersonFactory;
 use Curdal\AddressBook\Models\Relations\GroupPerson;
 use Curdal\AddressBook\Traits\HasContactInformation;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Person extends Model
 {
@@ -36,9 +36,14 @@ class Person extends Model
         });
     }
 
-    public function groups(): HasMany
+    public function groups(): BelongsToMany
     {
-        return $this->hasMany(Group::class)
+        return $this->belongsToMany(Group::class, (new GroupPerson)->getTable())
             ->using(GroupPerson::class);
+    }
+
+    protected static function newFactory()
+    {
+        return PersonFactory::new();
     }
 }

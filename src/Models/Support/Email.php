@@ -2,6 +2,7 @@
 
 namespace Curdal\AddressBook\Models\Support;
 
+use Curdal\AddressBook\Database\Factories\EmailFactory;
 use Curdal\AddressBook\Enums\ContactInformationType;
 use Curdal\AddressBook\Models\ContactInformation;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,5 +23,10 @@ class Email extends ContactInformation
         static::creating(function ($information) {
             $information->type = ContactInformationType::Email;
         });
+    }
+
+    protected static function newFactory()
+    {
+        return EmailFactory::new();
     }
 }

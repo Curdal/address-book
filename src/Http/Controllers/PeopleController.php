@@ -16,7 +16,7 @@ class PeopleController extends Controller
     {
         try {
             return PersonResource::collection(
-                Person::paginate()
+                Person::paginate($request->input('limit', 25))
             );
         } catch (Throwable $e) {
             return $this->errorResponse($e);
@@ -26,14 +26,20 @@ class PeopleController extends Controller
     public function create(PersonRequest $request): JsonResponse|PersonResource
     {
         try {
+            DB::beginTransaction();
+
             $person = (new Person())->create(
                 $request->only(['first_name', 'last_name'])
             );
 
             $this->processContactInformation($person, $request);
 
+            DB::commit();
+
             return new PersonResource($person);
         } catch (Throwable $e) {
+            DB::rollBack();
+
             return $this->errorResponse($e);
         }
     }
@@ -52,14 +58,20 @@ class PeopleController extends Controller
     public function update(PersonRequest $request, Person $person): JsonResponse|PersonResource
     {
         try {
+            DB::beginTransaction();
+
             $person->update(
                 $request->only(['first_name', 'last_name'])
             );
 
-            $this->processContactInformation($person, $request);
+            // $this->processContactInformation($person, $request);
+
+            DB::commit();
 
             return new PersonResource($person);
         } catch (Throwable $e) {
+            DB::rollBack();
+
             return $this->errorResponse($e);
         }
     }
@@ -70,16 +82,14 @@ class PeopleController extends Controller
             DB::beginTransaction();
 
             $person->contactInformation()->delete();
-            // $person->addresses()->delete();
-            // $person->emails()->delete();
-            // $person->phoneNumbers()->delete();
-
             $person->delete();
 
             DB::commit();
 
             return response()->json([], 204);
         } catch (Throwable $e) {
+            DB::rollBack();
+
             return $this->errorResponse($e);
         }
     }

@@ -24,9 +24,9 @@ class CreateAddressBookTables extends Migration
         });
 
         Schema::create('address_book_group_person', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('group_id')->constrained('address_book_groups')->onDelete('cascade');
-            $table->foreignId('person_id')->constrained('address_book_people')->onDelete('cascade');
+            $table->foreignId('group_id')->references('id')->on('address_book_groups')->onDelete('cascade');
+            $table->foreignId('person_id')->references('id')->on('address_book_people')->onDelete('cascade');
+            $table->index(['group_id', 'person_id'], 'gp_idx');
         });
 
         Schema::create('address_book_contact_information', function (Blueprint $table) {
@@ -34,7 +34,7 @@ class CreateAddressBookTables extends Migration
             $table->string('type', 100); // ['address', 'email', 'phone_number']
             $table->string('value', 255);
             $table->boolean('is_default')->default(false);
-            $table->foreignId('person_id')->constrained('address_book_people')->onDelete('cascade');
+            $table->foreignId('person_id')->references('id')->on('address_book_people')->onDelete('cascade');
             $table->index(['type', 'person_id'], 'pi_idx');
         });
     }

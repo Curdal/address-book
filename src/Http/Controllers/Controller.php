@@ -11,7 +11,7 @@ use Throwable;
 
 class Controller extends BaseController
 {
-    // use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use ValidatesRequests;
 
     public function errorResponse(Throwable $e)
     {
@@ -20,6 +20,7 @@ class Controller extends BaseController
         return response()->json([
             'code' => 500,
             'message' => 'Something went wrong. Please contact support if you need immediate assistance.',
+            'error' => $e->getMessage(),
         ], 500);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Curdal\AddressBook\Models;
 
+use Curdal\AddressBook\Database\Factories\ContactInformationFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,5 +26,10 @@ class ContactInformation extends Model
     public function person(): BelongsTo
     {
         return $this->belongsTo(Person::class);
+    }
+
+    protected static function newFactory()
+    {
+        return ContactInformationFactory::new();
     }
 }
