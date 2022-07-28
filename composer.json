@@ -1,0 +1,64 @@
+{
+    "name": "curdal/address-book",
+    "description": "A simple API to manage your address book",
+    "keywords": [
+        "api",
+        "laravel",
+        "address book"
+    ],
+    "homepage": "https://github.com/curdal/laravel-address-book",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Curtis Page",
+            "email": "hello@curdal.com",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^9.20"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.9.1",
+        "nunomaduro/collision": "^6.1",
+        "orchestra/testbench": "^7.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Curdal\\AddressBook\\": "src/",
+            "Curdal\\AddressBook\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Curdal\\AddressBook\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Curdal\\AddressBook\\AddressBookServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
