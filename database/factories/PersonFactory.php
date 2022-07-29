@@ -25,7 +25,7 @@ class PersonFactory extends Factory
         // $faker = FakerFactory::create('en_US');
 
         $firstName = fake()->firstName();
-        $lastName  = fake()->lastName();
+        $lastName = fake()->lastName();
         // $emails    = [];
 
         // for ($i = random_int(1, 4); $i > count($emails); $i--) {

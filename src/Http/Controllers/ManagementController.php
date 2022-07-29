@@ -2,8 +2,10 @@
 
 namespace Curdal\AddressBook\Http\Controllers;
 
-use Curdal\AddressBook\Models\{Person, Group};
-use Illuminate\Http\{JsonResponse, Request};
+use Curdal\AddressBook\Models\Group;
+use Curdal\AddressBook\Models\Person;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -13,7 +15,7 @@ class ManagementController extends Controller
     {
         $this->validate($request, [
             'groups' => 'array',
-            'groups.*' => 'numeric'
+            'groups.*' => 'numeric',
         ]);
 
         try {
@@ -35,7 +37,7 @@ class ManagementController extends Controller
     {
         $this->validate($request, [
             'groups' => 'array',
-            'groups.*' => 'numeric'
+            'groups.*' => 'numeric',
         ]);
 
         try {
@@ -57,7 +59,7 @@ class ManagementController extends Controller
     {
         $this->validate($request, [
             'people' => 'array',
-            'people.*' => 'numeric'
+            'people.*' => 'numeric',
         ]);
 
         try {
@@ -79,7 +81,7 @@ class ManagementController extends Controller
     {
         $this->validate($request, [
             'people' => 'array',
-            'people.*' => 'numeric'
+            'people.*' => 'numeric',
         ]);
 
         try {

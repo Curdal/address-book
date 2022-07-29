@@ -3,7 +3,9 @@
 namespace Curdal\AddressBook\Traits;
 
 use Curdal\AddressBook\Models\ContactInformation;
-use Curdal\AddressBook\Models\Support\{Address, Email, PhoneNumber};
+use Curdal\AddressBook\Models\Support\Address;
+use Curdal\AddressBook\Models\Support\Email;
+use Curdal\AddressBook\Models\Support\PhoneNumber;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

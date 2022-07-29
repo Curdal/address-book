@@ -1,7 +1,7 @@
 <?php
 
-use Curdal\AddressBook\Models\{Group, Person};
-
+use Curdal\AddressBook\Models\Group;
+use Curdal\AddressBook\Models\Person;
 use function Pest\Laravel\deleteJson;
 use function Pest\Laravel\postJson;
 

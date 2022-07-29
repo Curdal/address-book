@@ -2,7 +2,6 @@
 
 use Curdal\AddressBook\Models\Group;
 use Curdal\AddressBook\Models\Person;
-
 use function Pest\Laravel\deleteJson;
 use function Pest\Laravel\getJson;
 use function Pest\Laravel\postJson;
@@ -22,7 +21,7 @@ it('can retrieve a list of groups', function () {
 it('can create a group', function () {
     $dataSet = [
         'name' => 'Friends',
-        'description' => 'My dearest friends'
+        'description' => 'My dearest friends',
     ];
 
     postJson(route('address-book.groups.create'), $dataSet)
@@ -59,7 +58,7 @@ it('can find a group by ID with all people', function () {
                 'id',
                 'name',
                 'description',
-                'people'
+                'people',
             ],
         ])
         ->assertJsonCount(15, 'data.people');
@@ -70,7 +69,7 @@ it('can update a group', function () {
 
     $dataSet = [
         'name' => 'The Musketeers',
-        'description' => 'Gang Gang'
+        'description' => 'Gang Gang',
     ];
 
     putJson(route('address-book.groups.update', ['group' => $group->id]), $dataSet)
@@ -105,4 +104,4 @@ it('can remove a group and unlink people from the it', function () {
 
     // $this->assertDatabaseCount('address_book_group_person', 0); // In-memory database does not inforce relations
     $this->assertDatabaseCount('address_book_people', 50);
-})->skip(message: "In-memory databases does not inforce relations");
+})->skip(message: 'In-memory databases does not inforce relations');

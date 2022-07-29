@@ -2,10 +2,10 @@
 
 namespace Curdal\AddressBook\Tests;
 
+use Curdal\AddressBook\AddressBookServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Curdal\AddressBook\AddressBookServiceProvider;
 
 class TestCase extends Orchestra
 {

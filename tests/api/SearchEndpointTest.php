@@ -1,9 +1,8 @@
 <?php
 
-use Curdal\AddressBook\Models\Support\Email;
 use Curdal\AddressBook\Models\Group;
 use Curdal\AddressBook\Models\Person;
-
+use Curdal\AddressBook\Models\Support\Email;
 use function Pest\Laravel\getJson;
 
 it('lists groups and people from the search route', function () {

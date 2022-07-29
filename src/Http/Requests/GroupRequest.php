@@ -25,7 +25,7 @@ class GroupRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:5|max:150',
-            'description' => 'nullable'
+            'description' => 'nullable',
         ];
     }
 }

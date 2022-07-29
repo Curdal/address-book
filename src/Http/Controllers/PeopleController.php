@@ -5,7 +5,8 @@ namespace Curdal\AddressBook\Http\Controllers;
 use Curdal\AddressBook\Http\Requests\PersonRequest;
 use Curdal\AddressBook\Http\Resources\PersonResource;
 use Curdal\AddressBook\Models\Person;
-use Illuminate\Http\{JsonResponse, Request};
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -96,7 +97,7 @@ class PeopleController extends Controller
 
     private function processContactInformation(Person $person, PersonRequest $request): void
     {
-        if (!empty($emails = $request->input('emails'))) {
+        if (! empty($emails = $request->input('emails'))) {
             foreach ($emails as $email) {
                 $person->emails()->create([
                     'value' => $email,
@@ -104,7 +105,7 @@ class PeopleController extends Controller
             }
         }
 
-        if (!empty($phoneNumbers = $request->input('phone_numbers'))) {
+        if (! empty($phoneNumbers = $request->input('phone_numbers'))) {
             foreach ($phoneNumbers as $phoneNumber) {
                 $person->phoneNumbers()->create([
                     'value' => $phoneNumber,
@@ -112,7 +113,7 @@ class PeopleController extends Controller
             }
         }
 
-        if (!empty($addresses = $request->input('addresses'))) {
+        if (! empty($addresses = $request->input('addresses'))) {
             foreach ($addresses as $address) {
                 $person->addresses()->create([
                     'value' => $address,

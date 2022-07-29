@@ -4,7 +4,6 @@ use Curdal\AddressBook\Models\Person;
 use Curdal\AddressBook\Models\Support\Address;
 use Curdal\AddressBook\Models\Support\Email;
 use Curdal\AddressBook\Models\Support\PhoneNumber;
-
 use function Pest\Laravel\deleteJson;
 use function Pest\Laravel\getJson;
 use function Pest\Laravel\postJson;
@@ -38,7 +37,7 @@ it('can create a person and their contact information in a single request', func
         ],
     ])->assertSuccessful()->assertSee([
         'first_name' => 'John',
-        'last_name' => 'Doe'
+        'last_name' => 'Doe',
     ]);
 
     $this->assertDatabaseHas('address_book_people', ['first_name' => 'John', 'last_name' => 'Doe']);
@@ -104,7 +103,7 @@ it('can update a person', function () {
         'last_name' => 'Doe',
     ])->assertSuccessful()->assertSee([
         'first_name' => 'John',
-        'last_name' => 'Doe'
+        'last_name' => 'Doe',
     ]);
 });
 

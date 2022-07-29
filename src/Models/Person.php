@@ -30,7 +30,7 @@ class Person extends Model
                 separator: ' ',
                 array: [
                     trim($person->first_name),
-                    trim($person->last_name)
+                    trim($person->last_name),
                 ]
             );
         });

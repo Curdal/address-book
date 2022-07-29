@@ -20,7 +20,7 @@ class GroupResource extends JsonResource
             'description' => $this->description,
             'people' => PersonResource::collection(
                 $this->whenLoaded('people', $this->people)
-            )
+            ),
         ];
     }
 }

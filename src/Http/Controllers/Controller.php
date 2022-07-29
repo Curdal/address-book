@@ -2,8 +2,6 @@
 
 namespace Curdal\AddressBook\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Log;
@@ -15,7 +13,7 @@ class Controller extends BaseController
 
     public function errorResponse(Throwable $e)
     {
-        Log::error($e->getMessage() . "\r\n" . $e->getTraceAsString());
+        Log::error($e->getMessage()."\r\n".$e->getTraceAsString());
 
         return response()->json([
             'code' => 500,

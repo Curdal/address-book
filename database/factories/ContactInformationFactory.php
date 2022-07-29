@@ -34,7 +34,7 @@ class ContactInformationFactory extends Factory
         return [
             'type' => $type,
             'value' => fake()->{$method}(),
-            'is_default' => fake()->boolean(50)
+            'is_default' => fake()->boolean(50),
         ];
     }
 }

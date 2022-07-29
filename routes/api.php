@@ -1,11 +1,9 @@
 <?php
 
-use Curdal\AddressBook\Http\Controllers\{
-    GroupsController,
-    ManagementController,
-    PeopleController,
-    SearchController
-};
+use Curdal\AddressBook\Http\Controllers\GroupsController;
+use Curdal\AddressBook\Http\Controllers\ManagementController;
+use Curdal\AddressBook\Http\Controllers\PeopleController;
+use Curdal\AddressBook\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('api/address-book')
